@@ -1,6 +1,18 @@
+---
+type: methodology-standards
+status: verified
+tags:
+  - methodology
+  - standards
+  - architecture
+  - git
+  - quality
+---
 # Estándares de arquitectura, Git, datos y calidad
 
 **Propósito:** establecer principios y estándares técnicos transversales que puedan aplicarse a distintos proyectos sin imponer una arquitectura, tecnología o estructura específica.
+
+Para conocer cómo estos estándares se aplican en la ejecución diaria de tareas, consultar [[development-workflow]].
 
 ## Arquitectura y diseño
 
@@ -24,7 +36,6 @@
 
 * No realizar desarrollo directamente sobre la rama principal estable del proyecto.
 * Utilizar ramas de trabajo con una convención definida por el proyecto. Cuando sea apropiado, pueden utilizarse prefijos como:
-
   * `feature/`
   * `fix/`
   * `refactor/`
@@ -62,4 +73,5 @@ Antes de implementar una capacidad o introducir una decisión técnica, el agent
 
 Los estándares de esta página deben utilizarse como **principios de orientación y criterios de calidad**, no como una plantilla rígida que obligue a todos los proyectos a utilizar las mismas tecnologías, capas, patrones o estructuras.
 
-Cuando exista una tensión entre un estándar y las necesidades reales del proyecto, el agente debe identificarla, justificar la decisión y seguir el proceso establecido para resolver decisiones técnicas.
+Para la descomposición de requerimientos e historias de usuario respetando estos estándares, consultar [[planning-user-stories]].
+

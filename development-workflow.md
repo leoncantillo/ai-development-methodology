@@ -1,3 +1,12 @@
+---
+type: methodology-workflow
+status: verified
+tags:
+  - methodology
+  - workflow
+  - execution
+  - definition-of-done
+---
 # Flujo de trabajo para implementación de tareas
 
 **Fuente:** Flujo de Trabajo para Implementación de Tareas
@@ -5,13 +14,13 @@
 
 ## Objetivo y principios
 
-Toda tarea debe comprenderse y analizarse antes de modificar archivos.
+Toda tarea debe comprenderse y analizarse antes de modificar archivos. Para los estándares arquitectónicos y de calidad que rigen este flujo, consultar [[project-foundation]].
 
 El agente debe conocer el objetivo de la tarea, el contexto relevante del proyecto, las restricciones existentes y los posibles impactos antes de implementar cambios.
 
 El trabajo debe mantenerse dentro del alcance definido. Las mejoras, refactorizaciones o problemas adicionales detectados durante el análisis deben registrarse y proponerse como tareas independientes, salvo que sean necesarias para completar correctamente la tarea actual.
 
-El resultado debe dejar el proyecto en un estado funcional y verificable, sin introducir regresiones conocidas ni dejar cambios deliberadamente incompletos.
+El resultado debe dejar el proyecto en un estado funcional y verificable, sin introducir regresiones conocidas ni dejar cambios deliberadamente incompletos. Para la estimación y desglose de tareas a partir de requerimientos, ver [[planning-user-stories]].
 
 ## Flujo obligatorio
 
@@ -164,3 +173,4 @@ Cuando la descomposición requiera cambiar el alcance, alterar requisitos o toma
 **Comprender antes de modificar, diseñar antes de implementar y verificar antes de considerar una tarea terminada.**
 
 La metodología busca que los agentes trabajen de forma autónoma dentro de límites claros, manteniendo el control humano sobre las decisiones que puedan cambiar significativamente los requisitos, la arquitectura, el alcance o las reglas del proyecto.
+
