@@ -1,0 +1,36 @@
+{
+  "name": "ai-methodology",
+  "version": "0.1.0",
+  "description": "CLI para instalar, configurar, validar y actualizar una metodología de desarrollo de software con agentes de IA.",
+  "author": "https://leoncantillo.github.io/portfolio/",
+  "type": "module",
+  "bin": {
+    "ai-methodology": "./bin/ai-methodology.js"
+  },
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/**/*.test.js",
+    "ai-methodology": "node ./bin/ai-methodology.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "methodology",
+    "cli",
+    "workflow"
+  ],
+  "license": "MIT"
+}
