@@ -34,18 +34,8 @@ Para conocer cómo estos estándares se aplican en la ejecución diaria de tarea
 
 ## Control de versiones y colaboración
 
-* No realizar desarrollo directamente sobre la rama principal estable del proyecto.
-* Utilizar ramas de trabajo con una convención definida por el proyecto. Cuando sea apropiado, pueden utilizarse prefijos como:
-  * `feature/`
-  * `fix/`
-  * `refactor/`
-  * `docs/`
-  * `chore/`
-  * `test/`
-* Integrar los cambios mediante **Pull Requests**, siguiendo las reglas de revisión establecidas por el proyecto.
-* Utilizar **Conventional Commits** cuando el proyecto adopte esta convención.
-* Mantener los commits enfocados y con una responsabilidad clara, evitando mezclar cambios no relacionados.
-* Las modificaciones de documentación y las modificaciones de código deben mantenerse separadas cuando esto facilite su revisión, trazabilidad o reversión.
+* El trabajo en el proyecto se gestiona mediante control de versiones respetando la estabilidad de la rama principal y la trazabilidad de los cambios.
+* Las reglas operativas de ramas, commits atómicos, mensajes convencionales y Pull Requests se encuentran definidas de forma centralizada en [[git-workflow]].
 
 ## Datos y migraciones
 
@@ -74,4 +64,3 @@ Antes de implementar una capacidad o introducir una decisión técnica, el agent
 Los estándares de esta página deben utilizarse como **principios de orientación y criterios de calidad**, no como una plantilla rígida que obligue a todos los proyectos a utilizar las mismas tecnologías, capas, patrones o estructuras.
 
 Para la descomposición de requerimientos e historias de usuario respetando estos estándares, consultar [[planning-user-stories]].
-
