@@ -4,10 +4,12 @@ import { configCommand } from "./commands/config.js";
 import { installCommand } from "./commands/install.js";
 import { updateCommand } from "./commands/update.js";
 import { validateCommand } from "./commands/validate.js";
+import { knowledgeCommand } from "./commands/knowledge.js";
 import { CliError } from "./core/errors.js";
 import { getPackageVersion } from "./core/package.js";
 
 const COMMANDS = {
+  knowledge: knowledgeCommand,
   install: installCommand,
   update: updateCommand,
   config: configCommand,

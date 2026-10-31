@@ -55,6 +55,7 @@ export const METHODOLOGY_DOCUMENTS = [
 export const AGENT_FILES = [
   { template: "agents/workflow/designer.md", name: "designer.md" },
   { template: "agents/workflow/executor.md", name: "executor.md" },
+  { template: "agents/workflow/pka.md", name: "pka.md" },
 ];
 
 export const SETTABLE_PATHS = new Set([
