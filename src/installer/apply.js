@@ -53,3 +53,12 @@ export async function applyCurrentTask(taskPlan) {
   }
   return { created: false };
 }
+
+export async function applyRoadmap(roadmapPlan) {
+  if (roadmapPlan.status === "missing") {
+    await mkdir(path.dirname(roadmapPlan.destination), { recursive: true });
+    await writeManagedFile(roadmapPlan.destination, roadmapPlan.content);
+    return { created: true };
+  }
+  return { created: false };
+}

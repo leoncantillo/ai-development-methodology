@@ -100,7 +100,7 @@ export async function runChecks(projectDir) {
   if (await pathExists(roadmapPath)) {
     checks.push(ok("planning-roadmap", "Roadmap de planificación"));
   } else {
-    checks.push(warn("planning-roadmap", `No existe planning.roadmap.path: ${config.planning.roadmap.path}`));
+    checks.push(warn("planning-roadmap", `No existe planning.roadmap.path: ${config.planning.roadmap.path}. Ejecuta "ai-methodology install" para inicializarlo con la plantilla starter.`));
   }
 
   const currentTask = resolveFromProject(projectDir, config.workflow.current_task.path);
