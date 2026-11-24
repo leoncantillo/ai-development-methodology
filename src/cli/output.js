@@ -9,6 +9,7 @@ Comandos:
   update      Actualiza los archivos administrados
   config      Consulta o modifica la configuración
   validate    Comprueba la instalación
+  knowledge   Gestiona el conocimiento del proyecto (onboard)
 
 Opciones globales:
   -h, --help       Muestra esta ayuda
@@ -19,6 +20,13 @@ install:
   -y, --yes              Usa valores por defecto sin preguntar
       --name <nombre>    Nombre del proyecto
       --overwrite-local  Sobrescribe archivos modificados localmente
+      --skip-onboarding  Omite el proceso interactivo de onboarding
+      --onboard          Inicia el onboarding directamente
+
+knowledge:
+  onboard                Inicia o reanuda el cuestionario de recopilación inicial
+      --resume           Reanuda una sesión previa interrumpida
+      --reset            Reinicia el proceso de onboarding desde cero
 
 update:
       --dry-run          Muestra el plan sin escribir
@@ -49,7 +57,7 @@ export function printValidation(checks, summary) {
   console.log(`\nResult: ${resultLabel}`);
 }
 
-export function printInstallSummary({ projectDir, written, skipped, conflicts, currentTask, configPath }) {
+export function printInstallSummary({ projectDir, written, skipped, conflicts, currentTask, roadmap, configPath }) {
   console.log(`\nInstalación en ${projectDir}`);
   console.log(`Configuración: ${configPath}`);
   if (written.length > 0) {
@@ -72,5 +80,8 @@ export function printInstallSummary({ projectDir, written, skipped, conflicts, c
   }
   if (currentTask?.created) {
     console.log(`Tarea actual creada: ${currentTask.relative}`);
+  }
+  if (roadmap?.created) {
+    console.log(`Roadmap inicial creado: ${roadmap.relative}`);
   }
 }

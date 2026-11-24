@@ -44,3 +44,7 @@ export async function listManagedTemplates() {
 export async function loadCurrentTaskTemplate() {
   return loadTemplate("workflow/current-task.md");
 }
+
+export async function loadRoadmapTemplate() {
+  return loadTemplate("planning/roadmap.md");
+}

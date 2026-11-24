@@ -1,16 +1,17 @@
 import path from "node:path";
 import { configExists, configPath, loadConfig, saveConfig } from "../config/io.js";
 import { createDefaultConfig } from "../config/defaults.js";
-import { promptInstallConfig } from "../cli/prompts.js";
+import { promptConfirmOnboarding, promptInstallConfig } from "../cli/prompts.js";
 import { printInstallSummary } from "../cli/output.js";
 import { CliError } from "../core/errors.js";
 import { findGitRoot } from "../core/git.js";
 import { resolveProjectDir } from "../core/project.js";
-import { applyCurrentTask, applyManagedPlan } from "../installer/apply.js";
+import { applyCurrentTask, applyManagedPlan, applyRoadmap } from "../installer/apply.js";
 import { ensureConfiguredLayout } from "../installer/layout.js";
-import { planCurrentTask, planManagedFiles } from "../installer/plan.js";
+import { planCurrentTask, planManagedFiles, planRoadmap } from "../installer/plan.js";
 import { runChecks, summarizeChecks } from "../validator/checks.js";
 import { printValidation } from "../cli/output.js";
+import { runOnboarding } from "../knowledge/onboarding/runner.js";
 
 export async function installCommand({ cwd, flags }) {
   const projectDir = await resolveProjectDir(cwd, { forInstall: true });
@@ -48,6 +49,8 @@ export async function installCommand({ cwd, flags }) {
   });
   const currentTask = await planCurrentTask(projectDir, config);
   const currentTaskResult = await applyCurrentTask(currentTask);
+  const roadmap = await planRoadmap(projectDir, config);
+  const roadmapResult = await applyRoadmap(roadmap);
 
   printInstallSummary({
     projectDir,
@@ -55,6 +58,7 @@ export async function installCommand({ cwd, flags }) {
     skipped: applied.skipped,
     conflicts: applied.conflicts,
     currentTask: { ...currentTask, created: currentTaskResult.created },
+    roadmap: { ...roadmap, created: roadmapResult.created },
     configPath: configPath(projectDir),
   });
 
@@ -64,6 +68,22 @@ export async function installCommand({ cwd, flags }) {
 
   if (applied.conflicts.length > 0) {
     console.log("\nUsa `--overwrite-local` solo si quieres reemplazar los archivos modificados.");
+  }
+
+  if (interactive && !flags["skip-onboarding"]) {
+    console.log("\n--- Knowledge Onboarding ---");
+    const wantsOnboarding = flags.onboard || (await promptConfirmOnboarding());
+    if (wantsOnboarding) {
+      await runOnboarding({ projectDir, config, flags });
+    } else {
+      console.log(
+        "Puedes iniciar el proceso de onboarding en cualquier momento con:\n  ai-methodology knowledge onboard"
+      );
+    }
+  } else if (!interactive && !flags.yes) {
+    console.log(
+      "\nNota: Para completar la base de conocimiento inicial ejecuta:\n  ai-methodology knowledge onboard"
+    );
   }
 
   return summary.result === "invalid" ? 1 : 0;

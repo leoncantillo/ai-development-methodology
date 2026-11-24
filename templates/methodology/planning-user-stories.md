@@ -28,7 +28,9 @@ $$\text{Release (ej. MVP)} \longrightarrow \text{Epic (Capacidades y Checklist d
   * Notas de arquitectura y dependencias.
 
 > [!NOTE]
-> Las épicas son fuentes de verdad de alcance en modo de **solo lectura**. El Diseñador las consulta para determinar qué corresponde construir y **nunca las modifica** durante la planificación de tareas.
+> **Ciclo de vida y arranque inicial (Cold Start):**
+> Al instalar la metodología, se provee un archivo inicial de roadmap (`planning.roadmap.path`). Durante el onboarding inicial (`ai-methodology knowledge onboard`), se recogen los objetivos e hitos inmediatos. El **PKA** (`pka`) o el desarrollador refinan y mantienen el roadmap.
+> Las épicas son fuentes de verdad de alcance en modo de **solo lectura** para el Diseñador: este las consulta para determinar qué corresponde construir y **nunca las modifica** durante la planificación de tareas individuales.
 
 ---
 
