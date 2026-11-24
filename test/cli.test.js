@@ -4,7 +4,7 @@ import path from "node:path";
 import { test } from "node:test";
 import { makeTempDir, runCli, seedKnowledge, validConfig, writeProjectConfig } from "./helpers.js";
 
-test("install --yes crea agentes, documentos, config y current-task", async () => {
+test("install --yes crea agentes, documentos, config, current-task y roadmap starter", async () => {
   const dir = await makeTempDir();
   const result = await runCli(["install", "--yes", "--name", "demo", "--cwd", dir]);
   assert.equal(result.code, 0, result.stderr || result.stdout);
@@ -16,10 +16,36 @@ test("install --yes crea agentes, documentos, config y current-task", async () =
 
   const designer = await readFile(path.join(dir, ".agents/workflow/designer.md"), "utf8");
   assert.match(designer, /ai-methodology\.config\.json/);
+  assert.match(designer, /Cold Start \/ Bootstrapping Phase/);
+
+  const pka = await readFile(path.join(dir, ".agents/workflow/pka.md"), "utf8");
+  assert.match(pka, /name: pka/);
+  assert.match(pka, /permissions:/);
+  assert.match(pka, /\$\{knowledge\.source\.path\}/);
+  assert.match(pka, /\$\{planning\.roadmap\.path\}/);
+
   await readFile(path.join(dir, "docs/ai-development-methodology/git-workflow.md"), "utf8");
   await readFile(path.join(dir, "current-task.md"), "utf8");
   await readFile(path.join(dir, ".ai-methodology/manifest.json"), "utf8");
   assert.equal((await stat(path.join(dir, "docs/knowledge/planning/epics"))).isDirectory(), true);
+
+  const roadmap = await readFile(path.join(dir, "docs/knowledge/planning/roadmap.md"), "utf8");
+  assert.match(roadmap, /# Roadmap del Proyecto/);
+  assert.match(roadmap, /Hito 1: Fundación y MVP/);
+});
+
+test("install preserva un roadmap existente y no lo sobrescribe", async () => {
+  const dir = await makeTempDir();
+  const knowledgePlanningDir = path.join(dir, "docs", "knowledge", "planning");
+  const { mkdir } = await import("node:fs/promises");
+  await mkdir(knowledgePlanningDir, { recursive: true });
+  await writeFile(path.join(knowledgePlanningDir, "roadmap.md"), "# Custom Roadmap\n", "utf8");
+
+  const result = await runCli(["install", "--yes", "--name", "demo", "--cwd", dir]);
+  assert.equal(result.code, 0, result.stderr || result.stdout);
+
+  const roadmap = await readFile(path.join(knowledgePlanningDir, "roadmap.md"), "utf8");
+  assert.equal(roadmap, "# Custom Roadmap\n");
 });
 
 test("install crea las rutas configuradas y no abre docs como archivo", async () => {
