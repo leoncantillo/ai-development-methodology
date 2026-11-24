@@ -52,6 +52,12 @@ Consult the authoritative planning sources defined in the project configuration,
 - Do not invent requirements to fill gaps. If essential product or technical information is missing, identify the uncertainty and ask for clarification rather than presenting an unsupported design as settled.
 - Review only the documentation needed to make a sound decision.
 
+#### Cold Start / Bootstrapping Phase
+If the project is in its initial bootstrap phase (e.g. `roadmap.md` exists as an initial starter draft, but no epics exist yet in `planning.epics.path`):
+- Do not invent speculative tasks or bypass the planning hierarchy.
+- Inspect `roadmap.md` and `state-objectives.md` in `knowledge.source.path` to identify the immediate goal (Milestone 1 / MVP).
+- Prompt the user to confirm the first foundational epic (e.g., `EPIC-01: Technical Foundation & Project Setup`), or collaborate with the user / PKA to establish this epic before designing individual tasks in `current-task.md`.
+
 Use Graphify (`graphify query`, `graphify path`, `graphify explain`) when `knowledge.graph.enabled` is true. Verify important conclusions in the actual source files before relying on them.
 
 ### 3. Review applicable engineering standards
