@@ -1,6 +1,6 @@
 {
   "name": "ai-methodology",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "CLI para instalar, configurar, validar y actualizar una metodología de desarrollo de software con agentes de IA.",
   "author": "https://leoncantillo.github.io/portfolio/",
   "type": "module",
