@@ -22,6 +22,13 @@ function asBoolean(value, fallback) {
   return /^(y|yes|true|1|s|si|sí)$/i.test(String(value));
 }
 
+export async function promptConfirmOnboarding() {
+  const answer = (
+    await ask("¿Deseas iniciar el proceso de Knowledge Onboarding ahora? [S/n]", "s")
+  ).toLowerCase();
+  return answer === "" || answer === "s" || answer === "si" || answer === "sí" || answer === "y" || answer === "yes";
+}
+
 export async function promptInstallConfig({ projectName, existing }) {
   const defaults = createDefaultConfig({
     projectName,
