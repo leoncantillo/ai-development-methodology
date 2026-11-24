@@ -3,6 +3,10 @@ export const MANIFEST_DIR = ".ai-methodology";
 export const MANIFEST_FILENAME = "manifest.json";
 export const SCHEMA_VERSION = 1;
 
+export const ONBOARDING_DIR = ".ai-methodology/onboarding";
+export const ONBOARDING_PROGRESS_FILENAME = "progress.json";
+export const ONBOARDING_RESPONSES_FILENAME = "responses.json";
+
 export const DEFAULT_PATHS = {
   agents: ".agents/workflow",
   methodology: "docs/ai-development-methodology",
